@@ -175,25 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // ===== EFECTO TYPING EN TÍTULO =====
-    function typeWriterEffect() {
-        const title = document.querySelector('.cyber-title');
-        if (!title) return;
-        
-        const originalText = title.innerHTML;
-        title.innerHTML = '';
-        let i = 0;
-        
-        function typeChar() {
-            if (i < originalText.length) {
-                title.innerHTML += originalText.charAt(i);
-                i++;
-                setTimeout(typeChar, 50);
-            }
-        }
-        
-    }
-    
     // ===== CONTADOR DE EVENTOS (simulado) =====
     function animateCounter() {
         const counterElement = document.querySelector('.events-counter');
@@ -213,10 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Iniciar efectos cuando la página cargue
-    setTimeout(typeWriterEffect, 500);
     setTimeout(animateCounter, 1000);
     
-    // ===== EFECTO DE PARTICULAS EN FONDO =====
+    // ===== EFECTO DE BURBUJAS EN FONDO =====
     function createBubbles() {
         const waterBg = document.querySelector('.water-bg');
         if (!waterBg) return;
@@ -293,4 +273,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // ===== EFECTO GLITCH ALEATORIO EN LOGO =====
+    function randomGlitch() {
+        const glitch = document.querySelector('.glitch');
+        if (!glitch) return;
+        
+        setInterval(() => {
+            if (Math.random() > 0.7) { // 30% de probabilidad
+                glitch.style.transform = 'translateX(' + (Math.random() * 4 - 2) + 'px)';
+                setTimeout(() => {
+                    glitch.style.transform = 'translateX(0)';
+                }, 100);
+            }
+        }, 2000);
+    }
+    
+    randomGlitch();
 });
